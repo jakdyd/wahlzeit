@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 
     private double phi;
     private double theta;
@@ -48,37 +48,21 @@ public class SphericCoordinate implements Coordinate {
     }
 
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        return cartesianCoordinate.getDistance(asCartesianCoordinate());
-    }
-
-    @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
     }
 
     @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        SphericCoordinate comparison = coordinate.asSphericCoordinate();
-        if (compareDoubles(getRadius(), coordinate.asSphericCoordinate().getRadius())) {
-            double theta1 = Math.PI / 2 - getTheta();
-            double theta2 = Math.PI / 2 - comparison.getTheta();
-            double deltaPhi = Math.abs(getPhi() - comparison.getPhi());
-            double angle = Math.acos(Math.sin(theta1) * Math.sin(theta2)
-                    + Math.cos(theta1) * Math.cos(theta2) * Math.cos(deltaPhi));
-            return angle;
-        } else {
-            throw new RuntimeException("The coordinates do not the same radius, therefore no central angle can be determined!");
-        }
+    public boolean equals(Object obj) {
+        return (obj instanceof Coordinate) ? isEqual((Coordinate) obj) : false;
     }
 
     @Override
-    public boolean isEqual(Coordinate coordinate) {
-        SphericCoordinate comparison = coordinate.asSphericCoordinate();
-        return compareDoubles(getPhi(), comparison.getPhi())
-                && compareDoubles(getTheta(), comparison.getTheta())
-                && compareDoubles(getRadius(), comparison.getRadius());
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.phi) ^ (Double.doubleToLongBits(this.phi) >>> 32));
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.theta) ^ (Double.doubleToLongBits(this.theta) >>> 32));
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.radius) ^ (Double.doubleToLongBits(this.radius) >>> 32));
+        return hash;
     }
-
 }

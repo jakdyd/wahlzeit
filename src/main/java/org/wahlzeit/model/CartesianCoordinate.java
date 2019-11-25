@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
     private double x;
     private double y;
@@ -39,14 +39,6 @@ public class CartesianCoordinate implements Coordinate {
         this.z = z;
     }
 
-    public double getDistance(CartesianCoordinate coordinate) {
-        double sum = 0;
-        sum += Math.pow(getX() - coordinate.getX(), 2.0);
-        sum += Math.pow(getY() - coordinate.getY(), 2.0);
-        sum += Math.pow(getZ() - coordinate.getZ(), 2.0);
-        return Math.sqrt(sum);
-    }
-
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof Coordinate) ? isEqual((Coordinate) obj) : false;
@@ -67,38 +59,19 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        return getDistance(coordinate.asCartesianCoordinate());
-    }
-
-    @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = getDistanceToOrigin();
         double theta = Math.acos(getZ() / radius);
         double phi = Math.atan(getY() / getX());
         return new SphericCoordinate(phi, theta, radius);
     }
-    
+
     private double getDistanceToOrigin() {
         double sum = 0;
         sum += Math.pow(getX(), 2.0);
         sum += Math.pow(getY(), 2.0);
         sum += Math.pow(getZ(), 2.0);
         return Math.sqrt(sum);
-    }
-
-    @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return asSphericCoordinate().getCentralAngle(sphericCoordinate);
-    }
-
-    @Override
-    public boolean isEqual(Coordinate coordinate) {
-        CartesianCoordinate comparison = coordinate.asCartesianCoordinate();
-        return compareDoubles(getX(), comparison.getX())
-                && compareDoubles(getY(), comparison.getY())
-                && compareDoubles(getZ(), comparison.getZ());
     }
 
 }

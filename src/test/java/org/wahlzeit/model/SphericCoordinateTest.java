@@ -55,8 +55,8 @@ public class SphericCoordinateTest {
         double expResult13 = 10;
         double result12 = coordinate1.getCartesianDistance(coordinate2);
         double result13 = coordinate1.getCartesianDistance(coordinate3);
-        assertEquals(expResult12, result12, Coordinate.THRESHOLD);
-        assertEquals(expResult13, result13, Coordinate.THRESHOLD);
+        assertEquals(expResult12, result12, AbstractCoordinate.THRESHOLD);
+        assertEquals(expResult13, result13, AbstractCoordinate.THRESHOLD);
     }
 
     /**
@@ -69,7 +69,7 @@ public class SphericCoordinateTest {
         SphericCoordinate comparison = new SphericCoordinate(Math.PI / 4, Math.PI, 10);
         double expResult = Math.PI / 2;
         double result = instance.getCentralAngle(comparison);
-        assertEquals(expResult, result, Coordinate.THRESHOLD);
+        assertEquals(expResult, result, AbstractCoordinate.THRESHOLD);
     }
 
     /**
@@ -82,6 +82,32 @@ public class SphericCoordinateTest {
         SphericCoordinate comparison = new SphericCoordinate(1, 2, 3);
         boolean result = instance.isEqual(comparison);
         assertEquals(true, result);
+    }
+
+    /**
+     * Test of equals method, of class SphericCoordinate.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object obj = null;
+        SphericCoordinate instance = new SphericCoordinate();
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class SphericCoordinate.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        SphericCoordinate instance = new SphericCoordinate(1, 2, 3);
+        SphericCoordinate other = new SphericCoordinate(1, 2, 3);
+        int instanceCode = instance.hashCode();
+        int otherCode = other.hashCode();
+        assertEquals(instanceCode, otherCode);
     }
     
 }

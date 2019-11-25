@@ -29,32 +29,6 @@ public class CartesianCoordinateTest {
     }
 
     /**
-     * Test of getDistance method, of class CartesianCoordinate.
-     */
-    @Test
-    public void testGetDistance() {
-        System.out.println("getDistance");
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(1, 1, 1);
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(1, 1, 1);
-        CartesianCoordinate coordinate3 = new CartesianCoordinate(2, 2, 2);
-        double expResult12 = 0.0;
-        double expResult13 = Math.sqrt(3);
-        double result12 = coordinate1.getDistance(coordinate2);
-        double result13 = coordinate1.getDistance(coordinate3);
-        assertEquals(expResult12, result12, Coordinate.THRESHOLD);
-        assertEquals(expResult13, result13, Coordinate.THRESHOLD);
-    }
-
-    /**
-     * Test of getCartesianDistance method, of class CartesianCoordinate.
-     */
-    @Test
-    public void testGetCartesianDistance() {
-        System.out.println("getCartesianDistance");
-        testGetDistance();
-    }
-
-    /**
      * Test of asSphericCoordinate method, of class CartesianCoordinate.
      */
     @Test
@@ -76,7 +50,7 @@ public class CartesianCoordinateTest {
         CartesianCoordinate comparison = new CartesianCoordinate(1, -1, 0);
         double expResult = Math.PI / 2;
         double result = instance.getCentralAngle(comparison);
-        assertEquals(expResult, result, Coordinate.THRESHOLD);
+        assertEquals(expResult, result, AbstractCoordinate.THRESHOLD);
     }
 
     /**
@@ -90,5 +64,31 @@ public class CartesianCoordinateTest {
         boolean result = instance.isEqual(comparison);
         assertEquals(true, result);
     }
-    
+
+    /**
+     * Test of equals method, of class CartesianCoordinate.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object obj = null;
+        CartesianCoordinate instance = new CartesianCoordinate();
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class CartesianCoordinate.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        CartesianCoordinate instance = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate other = new CartesianCoordinate(1, 2, 3);
+        int instanceCode = instance.hashCode();
+        int otherCode = instance.hashCode();
+        assertEquals(instanceCode, otherCode);
+    }
+
 }
