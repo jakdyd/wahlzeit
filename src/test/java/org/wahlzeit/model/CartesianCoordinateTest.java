@@ -50,7 +50,7 @@ public class CartesianCoordinateTest {
         CartesianCoordinate comparison = new CartesianCoordinate(1, -1, 0);
         double expResult = Math.PI / 2;
         double result = instance.getCentralAngle(comparison);
-        assertEquals(expResult, result, AbstractCoordinate.THRESHOLD);
+        assertEquals(expResult, result, Coordinate.THRESHOLD);
     }
 
     /**

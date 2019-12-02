@@ -61,8 +61,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
     @Override
     public SphericCoordinate asSphericCoordinate() {
         double radius = getDistanceToOrigin();
+        if (radius == 0) {
+            return new SphericCoordinate(0, 0, 0);
+        }
         double theta = Math.acos(getZ() / radius);
-        double phi = Math.atan(getY() / getX());
+        double phi = getX() == 0 ? Math.signum(getY()) * Math.PI / 2 : Math.atan(getY() / getX());
         return new SphericCoordinate(phi, theta, radius);
     }
 

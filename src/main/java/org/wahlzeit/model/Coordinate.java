@@ -2,6 +2,12 @@ package org.wahlzeit.model;
 
 public interface Coordinate {
     
+    public static final double THRESHOLD = .0001;
+    
+    default boolean compareDoubles(double x, double y) {
+        return Math.abs(x - y) < THRESHOLD;
+    }
+    
     public CartesianCoordinate asCartesianCoordinate();
     
     public double getCartesianDistance(Coordinate coordinate);

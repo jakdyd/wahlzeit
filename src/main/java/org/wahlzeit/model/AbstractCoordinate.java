@@ -2,14 +2,9 @@ package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate {
 
-    final static double THRESHOLD = .0001;
-
-    protected boolean compareDoubles(double x, double y) {
-        return Math.abs(x - y) < THRESHOLD;
-    }
-
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
+        assert coordinate != null;
         CartesianCoordinate thisCoordinate = asCartesianCoordinate();
         CartesianCoordinate otherCoordiante = coordinate.asCartesianCoordinate();
         double sum = 0;
@@ -21,6 +16,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     @Override
     public double getCentralAngle(Coordinate coordinate) {
+        assert coordinate != null;
         SphericCoordinate thisCoordinate = asSphericCoordinate();
         SphericCoordinate otherCoordiante = coordinate.asSphericCoordinate();
         double theta1 = Math.PI / 2 - thisCoordinate.getTheta();
@@ -40,6 +36,10 @@ public abstract class AbstractCoordinate implements Coordinate {
                     && compareDoubles(asCartesianCoordinate().getZ(), comparison.getZ());
         }
         return false;
+    }
+    
+    protected void assertClassInvariants() {
+        
     }
     
 }

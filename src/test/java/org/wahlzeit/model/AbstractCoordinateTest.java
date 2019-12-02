@@ -64,8 +64,8 @@ public class AbstractCoordinateTest {
         Coordinate coordinate3 = new CartesianCoordinate(1, 1, 1);
         double distance12 = coordinate1.getCartesianDistance(coordinate2);
         double distance13 = coordinate1.getCartesianDistance(coordinate3);
-        assertEquals(0.0, distance12, AbstractCoordinate.THRESHOLD);
-        assertEquals(Math.sqrt(3), distance13, AbstractCoordinate.THRESHOLD);
+        assertEquals(0.0, distance12, Coordinate.THRESHOLD);
+        assertEquals(Math.sqrt(3), distance13, Coordinate.THRESHOLD);
     }
 
     /**
@@ -77,7 +77,7 @@ public class AbstractCoordinateTest {
         Coordinate coordinate1 = new SphericCoordinate(0, Math.PI / 4, 1);
         Coordinate coordinate2 = new SphericCoordinate(Math.PI, Math.PI / 4, 2);
         double result = coordinate1.getCentralAngle(coordinate2);
-        assertEquals(Math.PI / 2, result, AbstractCoordinate.THRESHOLD);
+        assertEquals(Math.PI / 2, result, Coordinate.THRESHOLD);
     }
 
     /**
