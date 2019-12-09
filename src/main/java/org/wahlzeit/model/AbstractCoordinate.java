@@ -1,6 +1,11 @@
 package org.wahlzeit.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public abstract class AbstractCoordinate implements Coordinate {
+
+    private static final Logger log = Logger.getLogger(AbstractCoordinate.class.getName());
 
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
@@ -29,17 +34,25 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        if (coordinate != null) {
+        try {
             CartesianCoordinate comparison = coordinate.asCartesianCoordinate();
             return compareDoubles(asCartesianCoordinate().getX(), comparison.getX())
                     && compareDoubles(asCartesianCoordinate().getY(), comparison.getY())
                     && compareDoubles(asCartesianCoordinate().getZ(), comparison.getZ());
+        } catch (NullPointerException ex) {
+            log.log(Level.WARNING, "Equality check with null returns 'false'", ex);
+            return false;
         }
-        return false;
     }
-    
-    protected void assertClassInvariants() {
-        
+
+    @Override
+    public boolean equals(Object obj) {
+        try {
+            return isEqual((Coordinate) obj);
+        } catch (ClassCastException ex) {
+            log.log(Level.WARNING, "Equality check with different object type returns 'false'", ex);
+            return false;
+        }
     }
-    
+
 }

@@ -3,7 +3,7 @@ package org.wahlzeit.model;
 public class Location {
     
     private final Coordinate coordinate;
-    private String description;
+    private String description = "";
 
     public Location(Coordinate coordinate) {
         this.coordinate = coordinate;

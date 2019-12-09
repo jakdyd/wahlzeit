@@ -8,6 +8,6 @@ public enum BeerCategory {
     PILS,
     MAERZEN,
     WEIZEN,
-    SONSTIGES;
+    OTHER;
     
 }

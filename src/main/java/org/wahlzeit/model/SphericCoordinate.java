@@ -53,11 +53,6 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return (obj instanceof Coordinate) ? isEqual((Coordinate) obj) : false;
-    }
-
-    @Override
     public int hashCode() {
         int hash = 7;
         hash = 47 * hash + (int) (Double.doubleToLongBits(this.phi) ^ (Double.doubleToLongBits(this.phi) >>> 32));

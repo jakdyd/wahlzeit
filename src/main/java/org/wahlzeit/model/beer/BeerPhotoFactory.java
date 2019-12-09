@@ -1,5 +1,6 @@
 package org.wahlzeit.model.beer;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoFactory;
@@ -12,6 +13,9 @@ public class BeerPhotoFactory extends PhotoFactory {
 
     private static BeerPhotoFactory instance = null;
 
+    private BeerPhotoFactory() {
+    }
+
     public static synchronized PhotoFactory getInstance() {
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
@@ -20,10 +24,7 @@ public class BeerPhotoFactory extends PhotoFactory {
         return instance;
     }
 
-    protected static synchronized void setInstance(BeerPhotoFactory photoFactory) {
-        if (instance != null) {
-            throw new IllegalStateException("attempt to initalize PhotoFactory twice");
-        }
+    private static synchronized void setInstance(BeerPhotoFactory photoFactory) {
         instance = photoFactory;
     }
 

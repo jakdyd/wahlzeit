@@ -40,11 +40,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return (obj instanceof Coordinate) ? isEqual((Coordinate) obj) : false;
-    }
-
-    @Override
     public int hashCode() {
         int hash = 7;
         hash = 17 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
