@@ -72,7 +72,7 @@ public class CartesianCoordinateTest {
     public void testEquals() {
         System.out.println("equals");
         Object obj = null;
-        CartesianCoordinate instance = new CartesianCoordinate();
+        CartesianCoordinate instance = new CartesianCoordinate(0, 0, 0);
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);

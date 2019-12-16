@@ -91,7 +91,7 @@ public class SphericCoordinateTest {
     public void testEquals() {
         System.out.println("equals");
         Object obj = null;
-        SphericCoordinate instance = new SphericCoordinate();
+        SphericCoordinate instance = new SphericCoordinate(0, 0, 0);
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
