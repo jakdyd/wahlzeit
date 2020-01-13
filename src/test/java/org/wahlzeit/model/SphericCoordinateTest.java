@@ -36,8 +36,8 @@ public class SphericCoordinateTest {
     @Test
     public void testAsCartesianCoordinate() {
         System.out.println("asCartesianCoordinate");
-        SphericCoordinate sphericCoordinate = new SphericCoordinate(Math.PI / 4, Math.PI / 2, Math.sqrt(2));
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1, 1, 0);
+        SphericCoordinate sphericCoordinate = SphericCoordinate.create(Math.PI / 4, Math.PI / 2, Math.sqrt(2));
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.create(1, 1, 0);
         boolean result = sphericCoordinate.isEqual(cartesianCoordinate);
         assertEquals(true, result);
     }
@@ -48,9 +48,9 @@ public class SphericCoordinateTest {
     @Test
     public void testGetCartesianDistance() {
         System.out.println("getCartesianDistance");
-        SphericCoordinate coordinate1 = new SphericCoordinate(0, 0, 0);
-        SphericCoordinate coordinate2 = new SphericCoordinate(Math.PI / 2, Math.PI / 4, Math.sqrt(2));
-        SphericCoordinate coordinate3 = new SphericCoordinate(0, 0, 10);
+        SphericCoordinate coordinate1 = SphericCoordinate.create(0, 0, 0);
+        SphericCoordinate coordinate2 = SphericCoordinate.create(Math.PI / 2, Math.PI / 4, Math.sqrt(2));
+        SphericCoordinate coordinate3 = SphericCoordinate.create(0, 0, 10);
         double expResult12 = Math.sqrt(2);
         double expResult13 = 10;
         double result12 = coordinate1.getCartesianDistance(coordinate2);
@@ -65,8 +65,8 @@ public class SphericCoordinateTest {
     @Test
     public void testGetCentralAngle() {
         System.out.println("getCentralAngle");
-        SphericCoordinate instance = new SphericCoordinate(Math.PI / 4, Math.PI / 2, 10);
-        SphericCoordinate comparison = new SphericCoordinate(Math.PI / 4, Math.PI, 10);
+        SphericCoordinate instance = SphericCoordinate.create(Math.PI / 4, Math.PI / 2, 10);
+        SphericCoordinate comparison = SphericCoordinate.create(Math.PI / 4, Math.PI, 10);
         double expResult = Math.PI / 2;
         double result = instance.getCentralAngle(comparison);
         assertEquals(expResult, result, Coordinate.THRESHOLD);
@@ -78,8 +78,8 @@ public class SphericCoordinateTest {
     @Test
     public void testIsEqual() {
         System.out.println("isEqual");
-        SphericCoordinate instance = new SphericCoordinate(1, 2, 3);
-        SphericCoordinate comparison = new SphericCoordinate(1, 2, 3);
+        SphericCoordinate instance = SphericCoordinate.create(1, 2, 3);
+        SphericCoordinate comparison = SphericCoordinate.create(1, 2, 3);
         boolean result = instance.isEqual(comparison);
         assertEquals(true, result);
     }
@@ -91,7 +91,7 @@ public class SphericCoordinateTest {
     public void testEquals() {
         System.out.println("equals");
         Object obj = null;
-        SphericCoordinate instance = new SphericCoordinate(0, 0, 0);
+        SphericCoordinate instance = SphericCoordinate.create(0, 0, 0);
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
@@ -103,8 +103,8 @@ public class SphericCoordinateTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        SphericCoordinate instance = new SphericCoordinate(1, 2, 3);
-        SphericCoordinate other = new SphericCoordinate(1, 2, 3);
+        SphericCoordinate instance = SphericCoordinate.create(1, 2, 3);
+        SphericCoordinate other = SphericCoordinate.create(1, 2, 3);
         int instanceCode = instance.hashCode();
         int otherCode = other.hashCode();
         assertEquals(instanceCode, otherCode);

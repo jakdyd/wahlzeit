@@ -2,7 +2,14 @@ package org.wahlzeit.model;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.wahlzeit.utils.PatternInstance;
 
+@PatternInstance(
+        name = "Adapter",
+        participants = {
+            "Adapter"
+        }
+)
 public abstract class AbstractCoordinate implements Coordinate {
 
     private static final Logger log = Logger.getLogger(AbstractCoordinate.class.getName());
@@ -35,10 +42,11 @@ public abstract class AbstractCoordinate implements Coordinate {
     @Override
     public boolean isEqual(Coordinate coordinate) {
         try {
+            CartesianCoordinate thisCoordinate = this.asCartesianCoordinate();
             CartesianCoordinate comparison = coordinate.asCartesianCoordinate();
-            return compareDoubles(asCartesianCoordinate().getX(), comparison.getX())
-                    && compareDoubles(asCartesianCoordinate().getY(), comparison.getY())
-                    && compareDoubles(asCartesianCoordinate().getZ(), comparison.getZ());
+            return compareDoubles(thisCoordinate.getX(), comparison.getX())
+                    && compareDoubles(thisCoordinate.getY(), comparison.getY())
+                    && compareDoubles(thisCoordinate.getZ(), comparison.getZ());
         } catch (NullPointerException ex) {
             log.log(Level.WARNING, "Equality check with null returns 'false'", ex);
             return false;

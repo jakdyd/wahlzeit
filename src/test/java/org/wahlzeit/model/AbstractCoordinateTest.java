@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.wahlzeit.model;
 
 import org.junit.After;
@@ -12,10 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author dydowicz
- */
 public class AbstractCoordinateTest {
 
     public AbstractCoordinateTest() {
@@ -59,9 +50,9 @@ public class AbstractCoordinateTest {
     @Test
     public void testGetCartesianDistance() {
         System.out.println("getCartesianDistance");
-        Coordinate coordinate1 = new CartesianCoordinate(0, 0, 0);
-        Coordinate coordinate2 = new CartesianCoordinate(0, 0, 0);
-        Coordinate coordinate3 = new CartesianCoordinate(1, 1, 1);
+        Coordinate coordinate1 = CartesianCoordinate.create(0, 0, 0);
+        Coordinate coordinate2 = CartesianCoordinate.create(0, 0, 0);
+        Coordinate coordinate3 = CartesianCoordinate.create(1, 1, 1);
         double distance12 = coordinate1.getCartesianDistance(coordinate2);
         double distance13 = coordinate1.getCartesianDistance(coordinate3);
         assertEquals(0.0, distance12, Coordinate.THRESHOLD);
@@ -74,8 +65,8 @@ public class AbstractCoordinateTest {
     @Test
     public void testGetCentralAngle() {
         System.out.println("getCentralAngle");
-        Coordinate coordinate1 = new SphericCoordinate(0, Math.PI / 4, 1);
-        Coordinate coordinate2 = new SphericCoordinate(Math.PI, Math.PI / 4, 2);
+        Coordinate coordinate1 = SphericCoordinate.create(0, Math.PI / 4, 1);
+        Coordinate coordinate2 = SphericCoordinate.create(Math.PI, Math.PI / 4, 2);
         double result = coordinate1.getCentralAngle(coordinate2);
         assertEquals(Math.PI / 2, result, Coordinate.THRESHOLD);
     }
@@ -86,8 +77,8 @@ public class AbstractCoordinateTest {
     @Test
     public void testIsEqual() {
         System.out.println("isEqual");
-        Coordinate coordinate1 = new CartesianCoordinate(1, 1, 1);
-        Coordinate coordinate2 = new SphericCoordinate(Math.PI / 4, Math.atan(Math.sqrt(2)), Math.sqrt(3));
+        Coordinate coordinate1 = CartesianCoordinate.create(1, 1, 1);
+        Coordinate coordinate2 = SphericCoordinate.create(Math.PI / 4, Math.atan(Math.sqrt(2)), Math.sqrt(3));
         boolean result = coordinate1.isEqual(coordinate2);
         assertEquals(true, result);
     }

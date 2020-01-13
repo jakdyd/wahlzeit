@@ -34,9 +34,9 @@ public class CartesianCoordinateTest {
     @Test
     public void testAsSphericCoordinate() {
         System.out.println("asSphericCoordinate");
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1, 1, 0);
-        SphericCoordinate sphericCoordinate = new SphericCoordinate(Math.PI / 4, Math.PI / 2, Math.sqrt(2));
-        boolean result = cartesianCoordinate.equals(sphericCoordinate);
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.create(1, 1, 0);
+        SphericCoordinate sphericCoordinate = SphericCoordinate.create(Math.PI / 4, Math.PI / 2, Math.sqrt(2));
+        boolean result = cartesianCoordinate.asSphericCoordinate().equals(sphericCoordinate);
         assertEquals(true, result);
     }
 
@@ -46,8 +46,8 @@ public class CartesianCoordinateTest {
     @Test
     public void testGetCentralAngle() {
         System.out.println("getCentralAngle");
-        CartesianCoordinate instance = new CartesianCoordinate(1, 1, 0);
-        CartesianCoordinate comparison = new CartesianCoordinate(1, -1, 0);
+        CartesianCoordinate instance = CartesianCoordinate.create(1, 1, 0);
+        CartesianCoordinate comparison = CartesianCoordinate.create(1, -1, 0);
         double expResult = Math.PI / 2;
         double result = instance.getCentralAngle(comparison);
         assertEquals(expResult, result, Coordinate.THRESHOLD);
@@ -59,8 +59,8 @@ public class CartesianCoordinateTest {
     @Test
     public void testIsEqual() {
         System.out.println("isEqual");
-        CartesianCoordinate instance = new CartesianCoordinate(1, 1, 0);
-        CartesianCoordinate comparison = new CartesianCoordinate(1, 1, 0);
+        CartesianCoordinate instance = CartesianCoordinate.create(1, 1, 0);
+        CartesianCoordinate comparison = CartesianCoordinate.create(1, 1, 0);
         boolean result = instance.isEqual(comparison);
         assertEquals(true, result);
     }
@@ -72,7 +72,7 @@ public class CartesianCoordinateTest {
     public void testEquals() {
         System.out.println("equals");
         Object obj = null;
-        CartesianCoordinate instance = new CartesianCoordinate(0, 0, 0);
+        CartesianCoordinate instance = CartesianCoordinate.create(0, 0, 0);
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
@@ -84,10 +84,10 @@ public class CartesianCoordinateTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        CartesianCoordinate instance = new CartesianCoordinate(1, 2, 3);
-        CartesianCoordinate other = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate instance = CartesianCoordinate.create(1, 2, 3);
+        CartesianCoordinate other = CartesianCoordinate.create(1, 2, 3);
         int instanceCode = instance.hashCode();
-        int otherCode = instance.hashCode();
+        int otherCode = other.hashCode();
         assertEquals(instanceCode, otherCode);
     }
 
