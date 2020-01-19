@@ -5,7 +5,7 @@ import org.wahlzeit.model.PhotoId;
 
 public class BeerPhoto extends Photo {
     
-    private BeerCategory beerCategory;
+    private Beer beer;
     
     public BeerPhoto() {
         id = PhotoId.getNextId();
@@ -17,12 +17,11 @@ public class BeerPhoto extends Photo {
         incWriteCount();
     }
 
-    public BeerCategory getBeerCategory() {
-        return beerCategory;
+    public Beer getBeer() {
+        return beer;
     }
 
-    public void setBeerCategory(BeerCategory beerCategory) {
-        this.beerCategory = beerCategory;
+    public void setBeer(Beer beer) {
+        this.beer = beer;
     }
-    
 }
