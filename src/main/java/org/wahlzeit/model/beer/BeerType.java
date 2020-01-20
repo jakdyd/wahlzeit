@@ -2,7 +2,6 @@ package org.wahlzeit.model.beer;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.Set;
 
 public class BeerType {
@@ -60,16 +59,20 @@ public class BeerType {
                 throw new BeerTypeHierarchyException("Assigned subtype is already supertype! Type: " + beerType.getName());
             } else {
                 if (beerType.getSuperType() != null) {
-                    Iterator<BeerType> it = beerType.getSuperType().getSubTypeIterator();
-                    while (it.hasNext()) {
-                        BeerType type = it.next();
-                        if (type.equals(beerType)) {
-                            it.remove();
-                        }
-                    }
+                    beerType.getSuperType().removeSubType(beerType);
                 }
                 beerType.setSuperType(this);
                 subTypes.add(beerType);
+            }
+        }
+    }
+
+    private void removeSubType(BeerType beerType) {
+        Iterator<BeerType> it = getSubTypeIterator();
+        while (it.hasNext()) {
+            BeerType type = it.next();
+            if (type.equals(beerType)) {
+                it.remove();
             }
         }
     }
