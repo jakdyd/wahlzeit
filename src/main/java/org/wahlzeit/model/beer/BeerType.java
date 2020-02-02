@@ -24,7 +24,7 @@ public class BeerType {
         return false;
     }
 
-    public Beer createInstance() {
+    protected Beer createInstance() {
         return new Beer(this);
     }
 

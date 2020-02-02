@@ -4,9 +4,9 @@ import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
 public class BeerPhoto extends Photo {
-    
+
     private Beer beer;
-    
+
     public BeerPhoto() {
         id = PhotoId.getNextId();
         incWriteCount();
@@ -23,5 +23,6 @@ public class BeerPhoto extends Photo {
 
     public void setBeer(Beer beer) {
         this.beer = beer;
+        beer.addPhoto(this);
     }
 }
